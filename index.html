@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="j.min.js"></script>
+  <script>
+    const carouselText = [
+      { text: "Angular", color: "red" },
+      { text: "HTML", color: "orange" },
+      { text: "CSS", color: "blue" },
+      { text: "JavaScript", color: "rgb(255, 191, 0)" },
+      { text: "React Native", color: "purple" },
+      { text: "PHP", color: "rgb(131, 22, 227)" },
+      { text: "MySQL", color: "rgb(28, 47, 114)" }
+    ]
+
+    $(document).ready(async function () {
+      carousel(carouselText, "#feature-text")
+    });
+
+    async function typeSentence(sentence, eleRef, delay = 30) {
+      const letters = sentence.split("");
+      let i = 0;
+      while (i < letters.length) {
+        await waitForMs(delay);
+        $(eleRef).append(letters[i]);
+        i++
+      }
+      return;
+    }
+
+    async function deleteSentence(eleRef) {
+      const sentence = $(eleRef).html();
+      const letters = sentence.split("");
+      let i = 0;
+      while (letters.length > 0) {
+        await waitForMs(100);
+        letters.pop();
+        $(eleRef).html(letters.join(""));
+      }
+    }
+
+    async function carousel(carouselList, eleRef) {
+      var i = 0;
+      while (true) {
+        updateFontColor(eleRef, carouselList[i].color)
+        await typeSentence(carouselList[i].text, eleRef);
+        await waitForMs(1500);
+        await deleteSentence(eleRef);
+        await waitForMs(500);
+        i++
+        if (i >= carouselList.length) { i = 0; }
+      }
+    }
+
+    function updateFontColor(eleRef, color) {
+      $(eleRef).css('color', color);
+    }
+
+    function waitForMs(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    }
+  </script>
+
+  <!--CSS Styles -->
+  <link rel="stylesheet" href="textanimation.css">
+  <link rel="stylesheet" href="style1.css" />
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="/assets/animate.min.css" />
+  <title>Abhay Kevat | Web Developer</title>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h1>Abhay Kevat</h1>
+    <ul class="navigation">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <button class="burger-menu" id="burger-menu">
+      <ion-icon class="bars" name="menu-outline"></ion-icon>
+    </button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <img src="assets/2597612.jpg" alt="jane-doe" loading="lazy" class="hero-img" />
+    <div class="bio animate__animated animate__shakeX">
+      Hello , <br>
+      My name is <span style="color: #4756df;"><u>Abhay Kevat</u></span> <br>
+      And i am Skilled in <br>
+      <span id="feature-text"></span>
+      <span class="input-cursor"></span><b>|</b> <br>
+      <button class="download-btn"><a href="/assets/Abhay Kevat Resume.pdf" download="Abhay_kevat_resume.pdf">Download
+          Resume</a></button>
+    </div>
+  </section>
+
+  <!-- More about -->
+  <section class="more-about">
+    <h2>More About Me</h2>
+    <p>
+      Hello Everyone , My name is <span style="color: #4756df;">abhay kevat</span> . Basically i am from Gujarat but
+      nowadays i am living in pune for my Education.
+    </p>
+    <p>
+      My Educational Background is , I completed my Bachelor's(<u>BCA</u>) From "<u>Collage Of Applied Sciences and Professional Studies - Chikhli</u>" , which is Affliated with "<u>Veer Narmad South Gujarat University, Surat</u>" .  Now i Persuing My Master's(<u>MCA</u>) At "<u>PCET's Pimpri Chinchwad University , Pune</u>" .
+    </p>
+    <br>
+    <p>
+      I don't have working experience but i completed some Certification Cource of Certified company or Website . <br>
+      <br>
+      <span class="certificates">
+        <span>🔷 <a href="/assets/Abhay_Kevat_3400834.pdf" target="_blank">TCS iON Career Edge - Young Professional </a>
+        </span>
+        <span>🔷 <a href="/assets/Udemy python3 Certificate.jpg" target="_blank">Udemy : Python - Begginer To Advanced </a> </span>
+        <span>🔷 <a href="/assets/Udemy Web development Certificate.jpg" target="_blank">Udemy : Web3 Development Essential</a></span>
+      </span>
+    </p>
+
+  </section>
+
+  <!-- Skills section -->
+  <section class="skills" id="skills">
+    <h2 class="skill-header">My Top Skills</h2>
+
+    <div class="skills-wrapper">
+      <div class="first-set animate__animated animate__pulse">
+        <img src="assets/icons/icons8-html-5.svg" alt="" loading="lazy" class="icon icon-card" />
+        <img src="assets/icons/icons8-css3.svg" alt="" loading="lazy" class="icon icon-card" />
+        <img src="assets/icons/icons8-javascript.svg" alt="" loading="lazy" class="icon icon-card" />
+      </div>
+
+      <div class="second-set animate__animated animate__pulse">
+        <img src="assets/icons/icons8-bootstrap.svg" alt="" loading="lazy" class="icon icon-card" />
+        <img src="assets/icons/icons8-react-native.svg" alt="" loading="lazy" class="icon icon-card" />
+        <img src="assets/icons/php-logo-svgrepo-com.svg" alt="" loading="lazy" class="icon icon-card" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects section -->
+  <section class="projects" id="projects">
+    <h2 class="projects-title">Some of my Recent Projects</h2>
+    <div class="projects-container">
+      <div class="project-container project-card">
+        <img src="assets/justdeal project.png" alt="expense-tracker" loading="lazy" class="project-pic" />
+        <h3 class="project-title">JUSTDEAL</h3>
+        <p class="project-details">
+          This is a service based Web-Application. <br>
+          this Website provide search shop in your city 
+            and also provide upload your shop to specific location.
+        </p>
+        <a href="justdealproject.html" class="project-link">Check it Out</a>
+      </div>
+
+      <div class="project-container project-card">
+        <img src="assets/solar project.png" alt="netflic-clone" loading="lazy" class="project-pic" />
+        <h3 class="project-title">ONLINE SOLAR SELLING</h3>
+        <p class="project-details">
+          this is a product selling Web-Application. <br>
+          this Website provides purchase of solar panels to customer and merchants .
+        </p>
+        <a href="solarproject.html" class="project-link">Check it Out</a>
+      </div>
+
+      <div class="project-container project-card">
+        <img src="assets/dinosour game project.png" alt="greeny-earth" loading="lazy" class="project-pic" />
+        <h3 class="project-title">DINOSOUR GAME</h3>
+        <p class="project-details">
+          this is a web game . <br>
+          this is Dinosour game which is made with HTML,CSS and JavaScript.
+        </p>
+        <a href="dinosourproject.html" class="project-link">Check it Out</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact section -->
+  <section class="contact" id="contact">
+    <h2>Get In Touch With Me</h2>
+    <div class="contact-form-container">
+      <div class="contact-form">
+        <form action="#" method="POST">
+          <div class="form-control">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="sender-name" placeholder="Enter Your Name" class="input-field"
+              required />
+          </div>
+          <div class="form-control">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="sender-email" placeholder="Enter Your Email" class="input-field"
+              required />
+          </div>
+          <div class="form-control">
+            <label for="message">Message</label>
+            <textarea id="message" cols="60" rows="10" placeholder="Enter Your Message" name="message"
+              class="input-field" required></textarea>
+          </div>
+          <input type="submit" value="Submit" id="submit-btn" class="submit-btn" />
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social accounts - Fixed to the right -->
+  <div class="socials">
+    <!-- <a href="#" target="_blank"
+          ><img
+            src="assets/icons/icons8-twitter-circled.gif"
+            alt="Twitter"
+            loading="lazy"
+            class="socicon"
+        /></a> -->
+    <a href="https://www.instagram.com/abhay_kevat_2310/" target="_blank"><img src="assets/icons/icons8-instagram.gif"
+        alt="Instagram" loading="lazy" class="socicon" /></a>
+    <a href="https://www.linkedin.com/in/abhay-kevat-9b7437260/" target="_blank"><img
+        src="assets/icons/icons8-linkedin-circled.gif" alt="Linkedin" loading="lazy" class="socicon" /></a>
+    <a href="https://github.com/Abhaykevat23" target="_blank"><img src="assets/icons/icons8-github.gif" alt="Github"
+        class="socicon" /></a>
+  </div>
+
+  <!-- Scroll to top -->
+  <i class="scroll-up" id="scroll-up">
+    <img src="assets/icons/icons8-upward-arrow.gif" class="socicon up-arrow" alt="scroll-up" />
+  </i>
+  <br>
+  <!-- Footer section -->
+  <footer>
+        <p class="copy">&copy; Copyright 2024</p>
+        <p class="copy">
+          <a href="https://twitter.com/koladechris" target="_blank">Abhaykevat.com</a>
+          All rights reserved
+        </p>
+  </footer>
+
+  <!-- Website scripts -->
+  <script src="app.js"></script>
+
+  <!-- Ion icons scripts -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+b {
+    animation: b 1s steps(1, end) infinite;
+}
+
+@keyframes b {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#feature-text,
+#input-cursor,
+.sentence,
+b {
+    font-size: 45px;
+    font-weight: 600;
+}
